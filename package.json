@@ -1,0 +1,46 @@
+{
+  "name": "storybook-router",
+  "version": "0.1.0",
+  "description": "A storybook decorator that allows you to integrate react-router components in your stories",
+  "main": "./dist/StoryRouter.js",
+  "license": "MIT",
+  "author": "Gianni Valdambrini",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gvaldambrini/storybook-router.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gvaldambrini/storybook-router/issues"
+  },
+  "homepage": "https://github.com/gvaldambrini/storybook-router",
+  "keywords": [
+    "react",
+    "storybook",
+    "react-router"
+  ],
+  "dependencies": {
+    "prop-types": "^15.5.8",
+    "react": "^15.5.4",
+    "react-router": "^4.1.1"
+  },
+  "devDependencies": {
+    "react-dom": "^15.5.4",
+    "@kadira/storybook": "^2.35.3",
+    "babel-cli": "^6.24.1",
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^6.10.3",
+    "react-router-dom": "^4.1.1",
+    "react-scripts": "0.9.5",
+    "storyshots": "^3.2.2"
+  },
+  "peerDependencies": {
+    "react": "^0.14.7 || ^15.0.0"
+  },
+  "scripts": {
+    "test": "react-scripts test --env=jsdom",
+    "lint": "eslint src/* stories/*",
+    "prepublish": "NODE_ENV=production npm run build",
+    "build": "babel -d dist/ src/",
+    "storybook": "start-storybook -p 9001 -c .storybook"
+  }
+}

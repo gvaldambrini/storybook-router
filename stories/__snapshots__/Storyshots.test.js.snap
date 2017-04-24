@@ -1,0 +1,153 @@
+exports[`Storyshots BackForward back & forward 1`] = `
+<div>
+  <div>
+    <ul>
+      <li>
+        <a
+          href="/about"
+          onClick={[Function]}>
+          About
+        </a>
+      </li>
+      <li>
+        <a
+          href="/settings"
+          onClick={[Function]}>
+          Settings
+        </a>
+      </li>
+      <li>
+        <a
+          href="/"
+          onClick={[Function]}>
+          Home
+        </a>
+      </li>
+    </ul>
+    <button
+      onClick={[Function]}>
+      Back
+    </button>
+    <button
+      onClick={[Function]}>
+      Forward
+    </button>
+    <div>
+      <h3>
+        Location: 
+        /
+      </h3>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Links about 1`] = `
+<div>
+  <div>
+    <ul>
+      <li>
+        <a
+          href="/"
+          onClick={[Function]}>
+          Home
+        </a>
+      </li>
+      <li>
+        <a
+          href="/about"
+          onClick={[Function]}>
+          About
+        </a>
+      </li>
+    </ul>
+    <hr />
+    <div>
+      <h2>
+        About
+      </h2>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Links home 1`] = `
+<div>
+  <div>
+    <ul>
+      <li>
+        <a
+          href="/"
+          onClick={[Function]}>
+          Home
+        </a>
+      </li>
+      <li>
+        <a
+          href="/about"
+          onClick={[Function]}>
+          About
+        </a>
+      </li>
+    </ul>
+    <hr />
+    <div>
+      <h2>
+        Home
+      </h2>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Params params 1`] = `
+<div>
+  <div>
+    <ul>
+      <li>
+        <a
+          href="/accounts/netflix"
+          onClick={[Function]}>
+          Netflix
+        </a>
+      </li>
+      <li>
+        <a
+          href="/accounts/sky"
+          onClick={[Function]}>
+          Sky
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>
+`;
+
+exports[`Storyshots Prompt prompt 1`] = `
+<div>
+  <div>
+    <ul>
+      <li>
+        <a
+          href="/about"
+          onClick={[Function]}>
+          About
+        </a>
+      </li>
+      <li>
+        <a
+          href="/settings"
+          onClick={[Function]}>
+          Settings
+        </a>
+      </li>
+    </ul>
+    <div>
+      <h3>
+        Location: 
+        /
+      </h3>
+    </div>
+  </div>
+</div>
+`;
