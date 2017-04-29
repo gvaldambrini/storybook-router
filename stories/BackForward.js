@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { storiesOf } from '@kadira/storybook';
 import { Route, Link } from 'react-router-dom';
 
+// In a project that uses 'storybook-router' from npm, use
+// import StoryRouter from 'storybook-router';
 import StoryRouter from '../src/StoryRouter';
 
 
