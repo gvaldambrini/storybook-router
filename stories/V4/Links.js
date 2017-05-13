@@ -5,7 +5,7 @@ import { Route, Link } from 'react-router-dom';
 
 // In a project that uses 'storybook-router' from npm, use
 // import StoryRouter from 'storybook-router';
-import StoryRouter from '../src/StoryRouter';
+import StoryRouter from '../../src/StoryRouter';
 
 
 const Home = () => (
@@ -32,16 +32,16 @@ const ComponentLinks = () => (
   </div>
 );
 
-storiesOf('Links', module)
+storiesOf('Linked stories', module)
   .addDecorator(StoryRouter(
-    {'/about': linkTo('Links', 'about')}))
+    {'/about': linkTo('Linked stories', 'about')}))
   .add('home', () => (
     <ComponentLinks/>
   ));
 
-storiesOf('Links', module)
+storiesOf('Linked stories', module)
   .addDecorator(StoryRouter(
-    {'/': linkTo('Links', 'home')},
+    {'/': linkTo('Linked stories', 'home')},
     {initialEntries: ['/about']}))
   .add('about', () => (
     <ComponentLinks/>

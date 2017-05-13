@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import { storiesOf } from '@kadira/storybook';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link, Prompt } from 'react-router-dom';
 
 // In a project that uses 'storybook-router' from npm, use
 // import StoryRouter from 'storybook-router';
-import StoryRouter from '../src/StoryRouter';
+import StoryRouter from '../../src/StoryRouter';
 
 
 const ChildLocation = ({location}) => (
@@ -19,25 +19,28 @@ ChildLocation.propTypes = {
   location: PropTypes.object
 };
 
-const ComponentBackForward = () => (
+const ComponentPrompt = () => (
   <div>
     <ul>
       <li><Link to="/about">About</Link></li>
       <li><Link to="/settings">Settings</Link></li>
-      <li><Link to="/">Home</Link></li>
     </ul>
-    <Route render={({history}) => (
-      <button onClick={history.goBack}>Back</button>
-    )} />
-    <Route render={({history}) => (
-      <button onClick={history.goForward}>Forward</button>
-    )} />
+    <Prompt
+      message={location => {
+        if (location.pathname === '/settings') {
+          return `Are you sure you want to go to ${location.pathname}?`;
+        }
+        return true;
+      }}
+    />
     <Route component={ChildLocation}/>
   </div>
 );
 
-storiesOf('BackForward', module)
-  .addDecorator(StoryRouter())
-  .add('back & forward', () => (
-    <ComponentBackForward/>
+storiesOf('Prompt', module)
+  .addDecorator(StoryRouter(
+    {},
+    {getUserConfirmation: (message, cb) => cb(window.confirm(message))}))
+  .add('prompt', () => (
+    <ComponentPrompt/>
   ));

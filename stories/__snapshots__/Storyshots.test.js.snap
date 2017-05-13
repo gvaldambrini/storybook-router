@@ -42,7 +42,7 @@ exports[`Storyshots BackForward back & forward 1`] = `
 </div>
 `;
 
-exports[`Storyshots Links about 1`] = `
+exports[`Storyshots Linked stories about 1`] = `
 <div>
   <div>
     <ul>
@@ -71,7 +71,7 @@ exports[`Storyshots Links about 1`] = `
 </div>
 `;
 
-exports[`Storyshots Links home 1`] = `
+exports[`Storyshots Linked stories home 1`] = `
 <div>
   <div>
     <ul>

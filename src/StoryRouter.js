@@ -2,10 +2,121 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { action } from '@kadira/storybook';
-import { MemoryRouter, Route, matchPath } from 'react-router';
+import {
+  MemoryRouter, // V4
+  matchPath, // V4
+  Route,
+  Router, // V3
+  createMemoryHistory // V3
+} from 'react-router';
 
+let StoryRouter, InnerComponent, match;
 
-class InnerComponent extends Component {
+// react-router V4 specific components
+if (typeof MemoryRouter !== 'undefined') {
+  const _innerComponent = (props) => (
+    <div>{props.story()}</div>
+  );
+
+  _innerComponent.propTypes = {
+    story: PropTypes.func.isRequired,
+  };
+
+  InnerComponent = _innerComponent;
+
+  match = (link, path) => {
+    // If the new path matches with one of the keys defined in the links object, then
+    // executes the given corresponding callback value with the path as argument.
+    // As behind the scene matchProps uses path-to-regexp (https://goo.gl/xgzOaL)
+    // you can use parameter names and regexp within the link keys.
+    return matchPath(path, {path: link, exact: true});
+  };
+
+  const _storyRouter = ({story, links, routerProps}) => (
+    // Limitation: as MemoryRouter creates a new history object, you cannot pass it from
+    // a story to another one and so you cannot implement a back or forward button which
+    // works among stories.
+    <MemoryRouter {...routerProps}>
+      <Route render={({history, location}) => (
+        <HistoryWatcher
+          story={story}
+          history={history}
+          location={location}
+          links={links}/>
+      )} />
+    </MemoryRouter>
+  );
+
+  _storyRouter.propTypes = {
+    story: PropTypes.func.isRequired,
+    links: PropTypes.object,
+    routerProps: PropTypes.object
+  };
+
+  StoryRouter = _storyRouter;
+}
+else { // react-router V3 specific components
+  const _innerComponent = (props) => (
+    <Router history={props.history} routes={props.routes} />
+  );
+
+  _innerComponent.propTypes = {
+    history: PropTypes.object.isRequired,
+    routes: PropTypes.element.isRequired,
+  };
+
+  InnerComponent = _innerComponent;
+
+  match = (link, path) => {
+    return link === path;
+  };
+
+  class _storyRouter extends Component {
+    constructor(props) {
+      super(props);
+      const { routerProps = {} } = this.props;
+      this.history = createMemoryHistory(
+        routerProps.initialEntry ? routerProps.initialEntry : '/'
+      );
+    }
+
+    render() {
+      const { story, links, routerProps = {} } = this.props;
+
+      let routes;
+      if (routerProps.autoRoute !== false) {
+        routes = (
+          <Route
+            path={this.history.getCurrentLocation().pathname}
+            component={() => story()}/>
+        );
+      }
+      else {
+        routes = story();
+      }
+
+      return (
+        <HistoryWatcher
+          routes={routes}
+          history={this.history}
+          location={this.history.getCurrentLocation()}
+          links={links}/>
+      );
+    }
+  }
+
+  _storyRouter.propTypes = {
+    story: PropTypes.func.isRequired,
+    links: PropTypes.object,
+    routerProps: PropTypes.object
+  };
+
+  StoryRouter = _storyRouter;
+}
+
+// Common components
+
+class HistoryWatcher extends Component {
   constructor(props) {
     super(props);
     this.onHistoryChanged = this.onHistoryChanged.bind(this);
@@ -17,8 +128,7 @@ class InnerComponent extends Component {
   }
 
   shouldComponentUpdate(nextProps) {
-    // As the history object is mutable (see https://goo.gl/lusQ2H) this check prevents
-    // unnecessary re-renderings.
+    // Prevents unnecessary re-renderings.
     return nextProps.location.pathname !== this.props.location.pathname;
   }
 
@@ -28,55 +138,26 @@ class InnerComponent extends Component {
 
   onHistoryChanged(location, historyAction) {
     const path = location.pathname;
-    const {links} = this.props;
+    const { links } = this.props;
 
     for (const link in links) {
-      // If the new path matches with one of the keys defined in the links object, then
-      // executes the given corresponding callback value with the path as argument.
-      // As behind the scene matchProps uses path-to-regexp (https://goo.gl/xgzOaL)
-      // you can use parameter names and regexp within the link keys.
-      if (matchPath(path, {path: link, exact: true})) {
+      if (match(path, link)) {
         links[link](path);
         return;
       }
     }
-    action(historyAction)(path);
+    action(historyAction ? historyAction : location.action)(path);
   }
 
   render() {
-    return (
-      <div>{this.props.story()}</div>
-    );
+    return <InnerComponent {...this.props}/>;
   }
 }
 
-InnerComponent.propTypes = {
-  story: PropTypes.func.isRequired,
+HistoryWatcher.propTypes = {
   history: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
-  links: PropTypes.object
-};
-
-
-const StoryRouter = ({story, links, routerProps}) => (
-  // Limitation: as MemoryRouter creates a new history object, you cannot pass it from
-  // a story to another one and so you cannot implement a back or forward button which
-  // works among stories.
-  <MemoryRouter {...routerProps}>
-    <Route render={({history, location}) => (
-      <InnerComponent
-        story={story}
-        history={history}
-        location={location}
-        links={links}/>
-    )} />
-  </MemoryRouter>
-);
-
-StoryRouter.propTypes = {
-  story: PropTypes.func.isRequired,
   links: PropTypes.object,
-  routerProps: PropTypes.object
 };
 
 const storyRouterDecorator = (links, routerProps) => {

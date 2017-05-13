@@ -34,7 +34,8 @@
     "storyshots": "^3.2.2"
   },
   "peerDependencies": {
-    "react": "^0.14.7 || ^15.0.0"
+    "react": "^0.14.7 || ^15.0.0",
+    "react-router": "^3.0.0 || ^4.0.0"
   },
   "scripts": {
     "test": "react-scripts test --env=jsdom",
