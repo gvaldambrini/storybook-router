@@ -1,6 +1,6 @@
 {
   "name": "storybook-router",
-  "version": "0.2.0",
+  "version": "0.2.3",
   "description": "A storybook decorator that allows you to integrate react-router components in your stories",
   "main": "./dist/StoryRouter.js",
   "license": "MIT",
@@ -20,10 +20,10 @@
   ],
   "dependencies": {
     "prop-types": "^15.5.10",
-    "react": "^15.5.4",
-    "react-router": "^4.1.1"
+    "react": "^15.5.4"
   },
   "devDependencies": {
+    "react-router": "^4.1.1",
     "react-dom": "^15.5.4",
     "@kadira/storybook": "^2.35.3",
     "babel-cli": "^6.24.1",
