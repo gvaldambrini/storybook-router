@@ -41,7 +41,7 @@ class Form extends Component {
       if (this.state.textValue) {
         return window.confirm('Are you sure you want to leave the form?');
       }
-    }
+    };
 
     this.props.router.setRouteLeaveHook(
       this.props.route, routerWillLeave

@@ -1,6 +1,6 @@
 {
   "name": "storybook-router",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "A storybook decorator that allows you to integrate react-router components in your stories",
   "main": "./dist/StoryRouter.js",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "react-router"
   ],
   "dependencies": {
-    "prop-types": "^15.5.8",
+    "prop-types": "^15.5.10",
     "react": "^15.5.4",
     "react-router": "^4.1.1"
   },
@@ -28,7 +28,7 @@
     "@kadira/storybook": "^2.35.3",
     "babel-cli": "^6.24.1",
     "eslint": "^3.19.0",
-    "eslint-plugin-react": "^6.10.3",
+    "eslint-plugin-react": "^7.0.0",
     "react-router-dom": "^4.1.1",
     "react-scripts": "0.9.5",
     "storyshots": "^3.2.2"
