@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-import { action } from '@kadira/storybook';
+import { action } from '@storybook/addon-actions';
 import {
   MemoryRouter, // V4
   matchPath, // V4

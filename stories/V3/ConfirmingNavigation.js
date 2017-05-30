@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { Route, Link, withRouter } from 'react-router';
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 
 // In a project that uses 'storybook-router' from npm, use
 // import StoryRouter from 'storybook-router';

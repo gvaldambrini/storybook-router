@@ -7,7 +7,7 @@ A [storybook](https://storybooks.js.org/) decorator that allows you to integrate
     npm install --save-dev storybook-router
 
 ## Basic usage
-The `StoryRouter` decorator is actually an HOC which wraps the react-router `Router` component and accepts two optional arguments. The default behavior is to log the [history method](https://github.com/ReactTraining/history#navigation) called behind the scene by react-router using the [storybook action logger](https://github.com/storybooks/storybook/tree/master/packages/addon-actions).
+The `StoryRouter` decorator is actually an HOC which wraps the react-router `Router` component and accepts two optional arguments. The default behavior is to log the [history method](https://github.com/ReactTraining/history#navigation) called behind the scene by react-router using the [storybook action logger](https://github.com/storybooks/storybook/tree/master/addons/actions).
 
 You can add globally the `StoryRouter` decorator if you are just fine with the default arguments, however if you want to link stories or you want to provide a custom route configuration object for your story (only with react-router v3) you need to add the decorator locally.
 
@@ -103,11 +103,11 @@ storiesOf('Links', module)
 
 The **first argument** is an object that you can use to extend the default behavior.
 Every time that a key in the object matches with a path Storybook will call the callback specified for the corresponding value with the destination path as argument.
-This way you can for example link stories together using the [`linkto` function](https://github.com/storybooks/storybook/tree/master/packages/addon-links).
+This way you can for example link stories together using the [`links` addons](https://github.com/storybooks/storybook/tree/master/addons/links) with the linkTo function.
 
 With react-router v3 the link keys need to be equal (`===`) to the history location of the performed action, with react-router v4 the match is performed using the [path-to-regexp module](https://www.npmjs.com/package/path-to-regexp) so you can also use parameter names and regexp within the link keys.
 
-The **second argument** is another object that depends on which version of react-router you are using. 
+The **second argument** is another object that depends on which version of react-router you are using.
 
 With react-router v3 you can specify the following object properties:
  * initialEntry, the starting history location [default `'/'`]

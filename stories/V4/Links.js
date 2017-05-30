@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { storiesOf, linkTo } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
+import { linkTo } from '@storybook/addon-links';
 import { Route, Link } from 'react-router-dom';
 
 // In a project that uses 'storybook-router' from npm, use
