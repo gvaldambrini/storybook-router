@@ -1,10 +1,14 @@
 # storybook-router
 
-A [storybook](https://storybooks.js.org/) decorator that allows you to integrate [react-router](https://reacttraining.com/react-router/) components in your stories. The decorator currently supports react-router v3 and v4, with few small differences (see below).
+A [Storybook](https://storybook.js.org/) decorator that allows you to integrate [react-router](https://reacttraining.com/react-router/) components in your stories. The decorator currently supports react-router v3 and v4, with few small differences (see below).
 
 ## Install
 
     npm install --save-dev storybook-router
+
+Please note that if you are using the old version of Storybook from the kadira organization (not recommended) the last version you can use is the 0.2.3:
+
+    npm install --save-dev storybook-router@0.2.3
 
 ## Basic usage
 The `StoryRouter` decorator is actually an HOC which wraps the react-router `Router` component and accepts two optional arguments. The default behavior is to log the [history method](https://github.com/ReactTraining/history#navigation) called behind the scene by react-router using the [storybook action logger](https://github.com/storybooks/storybook/tree/master/addons/actions).
