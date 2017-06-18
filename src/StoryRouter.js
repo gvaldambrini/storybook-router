@@ -29,7 +29,7 @@ if (typeof MemoryRouter !== 'undefined') {
     // executes the given corresponding callback value with the path as argument.
     // As behind the scene matchProps uses path-to-regexp (https://goo.gl/xgzOaL)
     // you can use parameter names and regexp within the link keys.
-    return matchPath(path, {path: link, exact: true});
+    return matchPath(link, {path: path, exact: true});
   };
 
   const _storyRouter = ({story, links, routerProps}) => (
