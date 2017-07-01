@@ -1,9 +1,1 @@
-import { MemoryRouter } from 'react-router';
-
-
-if (typeof MemoryRouter !== 'undefined') {
-  require('./V4/index');
-}
-else {
-  require('./V3/index');
-}
+require('./V4/index'); // replace with V3 to test with react-router v.3
