@@ -128,7 +128,7 @@ class HistoryWatcher extends Component {
   }
 
   componentWillUnmount() {
-    this.unlisten();
+    this.unlisten && this.unlisten();
   }
 
   onHistoryChanged(location, historyAction) {
