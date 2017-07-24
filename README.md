@@ -45,7 +45,7 @@ export default ComponentParams;
 you can add the `StoryRouter` decorator to your story this way:
 
 ```js
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 import StoryRouter from 'storybook-router';
 
 import ComponentParams from '<your_component_path>/ComponentParams';
@@ -91,7 +91,7 @@ export default ComponentLinks;
 you can add the `StoryRouter` decorator to your story this way:
 
 ```js
-import { storiesOf } from '@kadira/storybook';
+import { storiesOf } from '@storybook/react';
 import StoryRouter from 'storybook-router';
 
 import ComponentLinks from '<your_component_path>/ComponentLinks';
