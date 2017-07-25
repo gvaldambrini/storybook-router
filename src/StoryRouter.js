@@ -128,6 +128,13 @@ class HistoryWatcher extends Component {
   }
 
   componentWillUnmount() {
+    // If an exception occurs during a custom componentDidMount hook the
+    // HistoryWatcher::componentDidMount method will not be called and so
+    // the unlisten method will not be defined.
+    if (!this.unlisten) {
+      return;
+    }
+
     this.unlisten();
   }
 
