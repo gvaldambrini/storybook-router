@@ -1,19 +1,19 @@
 # storybook-router
 
-A [Storybook](https://storybook.js.org/) decorator that allows you to integrate [react-router](https://reacttraining.com/react-router/) components in your stories. The decorator currently supports react-router v3 and v4, with few small differences (see below).
+A [Storybook](https://storybook.js.org/) decorator that allows you to use your routing-aware components. You can simply use the library _link_ component within your story or you can write a real prototype of your application using `StoryRouter` in conjunction with the [story links addon](https://github.com/storybooks/storybook/tree/master/addons/links).
+
+The decorator currently supports [react-router](https://reacttraining.com/react-router/) v3 / v4 and [vue-router](https://router.vuejs.org/en/) v2.
 
 ## Install
 
     npm install --save-dev storybook-router
 
-Please note that if you are using the old version of Storybook from the kadira organization (not recommended) the last version you can use is the 0.2.3:
+## The StoryRouter decorator
+The decorator is actually a function which wraps the `Router` / `VueRouter` instance. It accepts two optional arguments that you can use if you want to build a prototype of your navigation within storybook or if you need more control over the router itself. For details, please refer to the specific documentation for [using with react-router](#usage-with-react-router) or [using with vue-router](#usage-with-vue-router).
 
-    npm install --save-dev storybook-router@0.2.3
+In its default behavior the decorator just log every routing action perfomed using the [storybook action logger](https://github.com/storybooks/storybook/tree/master/addons/actions). If you are fine with the default arguments you can add globally the `StoryRouter` decorator, however if you need to specify some of the arguments you have to use the decorator in every story that needs it.
 
-## Basic usage
-The `StoryRouter` decorator is actually an HOC which wraps the react-router `Router` component and accepts two optional arguments. The default behavior is to log the [history method](https://github.com/ReactTraining/history#navigation) called behind the scene by react-router using the [storybook action logger](https://github.com/storybooks/storybook/tree/master/addons/actions).
-
-You can add globally the `StoryRouter` decorator if you are just fine with the default arguments, however if you want to link stories or you want to provide a custom route configuration object for your story (only with react-router v3) you need to add the decorator locally.
+## Usage with react-router
 
 ### A simple example with react-router v4
 
@@ -103,7 +103,7 @@ storiesOf('Links', module)
   ));
 ```
 
-## StoryRouter arguments
+### StoryRouter arguments
 
 The **first argument** is an object that you can use to extend the default behavior.
 Every time that a key in the object matches with a path Storybook will call the callback specified for the corresponding value with the destination path as argument.
@@ -122,8 +122,74 @@ As usually Storybook is used to render _dumb_ components, `StoryRouter` provides
 With react-router v4 the object will be forwarded to the wrapped `MemoryRouter` as [props](https://reacttraining.com/react-router/web/api/MemoryRouter). This allows you to write stories having a specific url location or using advanced functionalities as asking the user confirmation before exiting from a location.
 
 ### Advanced usage and examples
-You can find more examples in the provided stories for [react-router v3](https://github.com/gvaldambrini/storybook-router/tree/master/stories/V3) and [react-router v4](https://github.com/gvaldambrini/storybook-router/tree/master/stories/V4).
+You can find more examples in the provided stories for [react-router v3](https://github.com/gvaldambrini/storybook-router/tree/master/examples/react-router/V3) and [react-router v4](https://github.com/gvaldambrini/storybook-router/tree/master/examples/react-router/V4).
 
 ### Limitations
 
 As the wrapped Router creates a new history object for each story you cannot pass the history from a story to  another one and so you cannot implement a back or forward button which works among stories.
+
+## Usage with vue-router
+
+Suppose you have a navigation bar that uses the vue-router `router-link`:
+```js
+const NavBar = {
+  template: `
+    <div>
+      <router-link to="/">Home</router-link>
+      <router-link to="/about">About</router-link>
+    </div>`
+};
+```
+you can define a story for your component just like this:
+
+```js
+storiesOf('NavBar', module)
+  .addDecorator(StoryRouter())
+  .add('default', () => NavBar);
+```
+
+or if you want to include in your story the target components (with a local navigation) you can write:
+```js
+const Home = {
+  template: '<div>Home</div>'
+};
+
+const About = {
+  template: '<div>About</div>'
+};
+
+storiesOf('Navigation', module)
+  .addDecorator(StoryRouter({}, {
+    routes: [
+      { path: '/', component: Home },
+      { path: '/about', component: About }
+    ]}))
+  .add('local', () => ({
+    components: { NavBar },
+    template: `
+      <div>
+        <nav-bar/>
+        <router-view/>
+      </div>`
+  }));
+```
+
+### StoryRouter arguments
+
+The **first argument** is an object that you can use to extend the default behavior.
+Every time that a key in the object matches with a path Storybook will call the callback specified for the corresponding value with the destination path as argument.
+This way you can for example link stories together using the [`links` addons](https://github.com/storybooks/storybook/tree/master/addons/links) with the linkTo function.
+The link keys need to be equal (`===`) to the fullPath of the destination route.
+
+The **second argument** is another object you can use to specify one of the [vue-router constructor options](https://router.vuejs.org/en/api/options.html) plus a couple of specific `StoryRouter` options:
+ * initialEntry, the starting location [default `'/'`]
+ * globalBeforeEach, a function which will be installed as a [global beforeEach guard](https://router.vuejs.org/en/advanced/navigation-guards.html)
+
+
+### Advanced usage and examples
+
+You can find more examples in the [provided stories](https://github.com/gvaldambrini/storybook-router/tree/master/examples/vue-router).
+
+### Limitations
+
+As the wrapped VueRouter uses the browser history API which is quite limited (for example, it is not possible to reset the history stack) the same limitations apply to the `StoryRouter` decorator.

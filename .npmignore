@@ -1,6 +1,5 @@
 src
-stories
-.storybook
+examples
 
 .babelrc
 .eslintrc

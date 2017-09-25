@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 import { storiesOf } from '@storybook/react';
 import { Route, Link } from 'react-router';
 
-// In a project that uses 'storybook-router' from npm, use
-// import StoryRouter from 'storybook-router';
-import StoryRouter from '../../src/StoryRouter';
-
+import StoryRouter from 'storybook-router';
 
 const ChildId = ({params}) => (
   <div>
