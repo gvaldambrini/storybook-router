@@ -1,7 +1,7 @@
 {
   "name": "storybook-router",
-  "version": "0.3.0",
-  "description": "A storybook decorator that allows you to use your routing-aware components in your stories.",
+  "version": "0.3.1",
+  "description": "A storybook decorator that allows you to use routing-aware components in your stories.",
   "main": "./dist/StoryRouter.js",
   "license": "MIT",
   "author": "Gianni Valdambrini",
