@@ -55,3 +55,10 @@ storiesOf('Links', module)
         <router-link to="/anothertarget">Link to a redirected target</router-link>
       </div>`,
   }));
+
+storiesOf('Links', module)
+  .addDecorator(
+    StoryRouter({'/base/inner': linkTo('Links', 'target story')}, {initialEntry: '/base'}))
+  .add('router-link relative path', () => ({
+    template: `<router-link to="inner" append>A relative path Link</router-link>`,
+  }));
