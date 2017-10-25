@@ -23,7 +23,7 @@
   "dependencies": {
     "prop-types": "^15.5.10",
     "react": "^0.14.7 || ^15.0.0",
-    "react-router": "^3.0.0 || ^4.0.0",
+    "react-router": "^3.0 || ^4.0",
     "vue": "^2.4.4",
     "vue-router": "^2.7.0",
     "@storybook/addon-actions": "^3.2.10"
