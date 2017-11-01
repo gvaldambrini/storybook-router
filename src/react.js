@@ -14,9 +14,7 @@ let StoryRouter, InnerComponent, match;
 
 // react-router V4 specific components
 if (typeof MemoryRouter !== 'undefined') {
-  const _innerComponent = (props) => (
-    <div>{props.story()}</div>
-  );
+  const _innerComponent = props => props.story();
 
   _innerComponent.propTypes = {
     story: PropTypes.func.isRequired,
