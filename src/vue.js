@@ -67,7 +67,7 @@ const storyRouterDecorator = (links = {}, routerProps = {}) => {
     });
 
     const WrappedComponent = story();
-    return Vue.extend({
+    return {
       router,
       components: { WrappedComponent },
       template: '<wrapped-component/>',
@@ -78,7 +78,7 @@ const storyRouterDecorator = (links = {}, routerProps = {}) => {
         // times as the VueRouter instance has been created)
         this.$options.router.afterHooks = [];
       },
-    });
+    };
   };
 };
 
