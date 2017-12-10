@@ -20,9 +20,11 @@
     "@storybook/addon-actions": "^3.2.0",
     "@storybook/addon-links": "^3.2.0",
     "@storybook/vue": "^3.2.0",
+    "storybook-router": "0.3.2",
     "vue": "^2.4.4",
+    "vue-loader": "^13.5.0",
     "vue-router": "^2.7.0",
-    "storybook-router": "0.3.2"
+    "vue-template-compiler": "^2.5.9"
   },
   "scripts": {
     "storybook": "start-storybook -p 9002 -c .storybook"
