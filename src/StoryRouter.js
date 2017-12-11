@@ -1,4 +1,3 @@
-import { window } from 'global';
 import ReactStoryRouter from './react';
 import VueStoryRouter from './vue';
 
