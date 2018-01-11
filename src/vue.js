@@ -5,9 +5,12 @@ import { action } from '@storybook/addon-actions';
 
 Vue.use(VueRouter);
 
-const storyRouterDecorator = (links = {}, routerProps = {}) => {
+const storyRouterDecorator = (links = {}, routerProps = {}, customizer) => {
   return story => {
     const router = new VueRouter(routerProps);
+    if (typeof customizer === 'function') {
+      customizer(router);
+    }
     router.replace(routerProps.initialEntry ? routerProps.initialEntry : '/');
 
     const getLocation = (location) => {
