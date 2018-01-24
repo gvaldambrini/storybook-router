@@ -135,3 +135,56 @@ storiesOf('Navigation', module)
       },
     },
   }));
+
+
+const Foo = {
+  template: `
+    <section>Foo.</section>
+  `
+};
+
+/* eslint-disable no-console */
+const Bar = {
+  template: `
+    <section>
+      <div>Bar</div>
+    </section>
+  `,
+  beforeRouteEnter(to, from, next) {
+    console.log('Entering Bar');
+
+    next(vm => {
+      vm.testFunc('Some Message');
+      console.log("Fully Entered Bar");
+    });
+  },
+  beforeRouteLeave(to, from, next) {
+    console.log('Leaving Bar');
+    next();
+  },
+  methods: {
+    testFunc(msg) {
+      console.log(msg);
+    }
+  }
+};
+/* eslint-enable no-console */
+
+storiesOf('Navigation', module)
+.addDecorator(StoryRouter({}, {
+  routes: [
+    { path: "/bar", name: 'bar', component: Bar },
+    { path: "/foo", name: 'foo', component: Foo },
+  ]
+}))
+.add('guards', () => ({
+  template: `
+    <div>
+      <div>
+      <router-link to="/bar">Bar</router-link>
+      <router-link to="/foo">Foo</router-link>
+      </div>
+      <router-view/>
+    </div>
+    `,
+}));
