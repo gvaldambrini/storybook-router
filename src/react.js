@@ -171,4 +171,6 @@ const storyRouterDecorator = (links, routerProps) => {
   return s;
 };
 
+export { StoryRouter };
+
 export default storyRouterDecorator;
