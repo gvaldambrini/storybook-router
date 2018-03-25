@@ -1,8 +1,6 @@
 {
   "name": "storybook-router",
-  "version": "0.3.3",
   "description": "A storybook decorator that allows you to use routing-aware components in your stories.",
-  "main": "./dist/StoryRouter.js",
   "license": "MIT",
   "author": "Gianni Valdambrini",
   "repository": {
@@ -20,24 +18,23 @@
     "vue",
     "vue-router"
   ],
-  "dependencies": {
-    "prop-types": "^15.5.10",
-    "react": "^0.14.7 || ^15.0.0",
-    "react-router": "^3.0.0 || ^4.0.0",
-    "vue": "^2.4.4",
-    "vue-router": "^2.7.0",
-    "@storybook/addon-actions": "^3.2.10"
-  },
   "devDependencies": {
-    "babel-cli": "^6.24.1",
-    "babel-preset-es2015": "^6.24.1",
-    "eslint": "^3.19.0",
-    "eslint-plugin-react": "^7.0.1",
-    "react-scripts": "1.0.7"
+    "babel-eslint": "^8.2.2",
+    "eslint": "^4.17.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.6.1",
+    "lerna": "^2.9.0",
+    "prettier": "1.11.1"
   },
   "scripts": {
-    "lint": "eslint src/* examples/*",
-    "prepublish": "NODE_ENV=production npm run build",
-    "build": "babel -d dist/ src/"
-  }
+    "lint": "eslint packages/* examples/*",
+    "bootstrap": "lerna bootstrap",
+    "check-versions": "npm outdated; lerna exec --concurrency=1 --bail=false -- npm outdated",
+    "build-react": "lerna exec --scope storybook-react-router -- npm run build",
+    "build-vue": "lerna exec --scope storybook-vue-router -- npm run build",
+    "storybook-react-examples": "lerna exec --scope storybook-react-router-examples -- npm run storybook",
+    "storybook-vue-examples": "lerna exec --scope storybook-vue-router-examples -- npm run storybook"
+  },
+  "private": true
 }

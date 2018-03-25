@@ -10,7 +10,7 @@ const storyRouterDecorator = (links = {}, routerProps = {}) => {
     const router = new VueRouter(routerProps);
     router.replace(routerProps.initialEntry ? routerProps.initialEntry : '/');
 
-    const getLocation = (location) => {
+    const getLocation = location => {
       // The location can be a simple string if you are using directly one of the
       // Router methods (https://router.vuejs.org/en/api/router-instance.html#methods)
       // or it can be an object, having the name or the path depending if you

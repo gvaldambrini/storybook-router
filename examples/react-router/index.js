@@ -1,1 +1,4 @@
-require('./V4/index'); // replace with V3 to test with react-router v.3
+import './Links';
+import './Params';
+import './Prompt';
+import './BackForward';

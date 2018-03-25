@@ -1,13 +1,13 @@
 import { storiesOf } from '@storybook/vue';
 
-import StoryRouter from 'storybook-router';
+import StoryRouter from 'storybook-vue-router';
 
 const About = {
-  template: '<h1>About</h1>'
+  template: '<h1>About</h1>',
 };
 
 const Dashboard = {
-  template: '<h1>Dashboard</h1>'
+  template: '<h1>Dashboard</h1>',
 };
 
 const Auth = {
@@ -17,7 +17,7 @@ const Auth = {
   },
   logout: function() {
     this.loggedIn = false;
-  }
+  },
 };
 
 const Login = {
@@ -26,29 +26,37 @@ const Login = {
     login: function() {
       Auth.login();
       this.$router.push(this.$route.query.redirect);
-    }
-  }
+    },
+  },
 };
 
 const globalBeforeEach = (to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth) && !Auth.loggedIn) {
-    next({ path: '/login', query: { redirect: to.fullPath }});
-  }
-  else {
+    next({ path: '/login', query: { redirect: to.fullPath } });
+  } else {
     next();
   }
 };
 
 storiesOf('Authentication', module)
-  .addDecorator(StoryRouter({}, {
-    routes: [
-      { path: '/about', component: About },
-      { path: '/dashboard', component: Dashboard, meta: { requiresAuth: true }},
-      { path: '/login', component: Login }
-    ],
-    globalBeforeEach,
-    initialEntry: '/about'
-  }))
+  .addDecorator(
+    StoryRouter(
+      {},
+      {
+        routes: [
+          { path: '/about', component: About },
+          {
+            path: '/dashboard',
+            component: Dashboard,
+            meta: { requiresAuth: true },
+          },
+          { path: '/login', component: Login },
+        ],
+        globalBeforeEach,
+        initialEntry: '/about',
+      }
+    )
+  )
   .add('with global guard', () => ({
     template: `
       <div>

@@ -1,13 +1,13 @@
 import { storiesOf } from '@storybook/vue';
 
-import StoryRouter from 'storybook-router';
+import StoryRouter from 'storybook-vue-router';
 
 const Home = {
-  template: '<div>Home</div>'
+  template: '<div>Home</div>',
 };
 
 const About = {
-  template: '<div>About</div>'
+  template: '<div>About</div>',
 };
 
 const NavBar = {
@@ -15,36 +15,44 @@ const NavBar = {
     <div>
       <router-link to="/">Home</router-link>
       <router-link to="/about">About</router-link>
-    </div>`
+    </div>`,
 };
 
 storiesOf('Navigation', module)
-  .addDecorator(StoryRouter({}, {
-    initialEntry: '/about',
-    routes: [
-      { path: '/', component: Home },
-      { path: '/about', component: About }
-    ]}))
+  .addDecorator(
+    StoryRouter(
+      {},
+      {
+        initialEntry: '/about',
+        routes: [
+          { path: '/', component: Home },
+          { path: '/about', component: About },
+        ],
+      }
+    )
+  )
   .add('local', () => ({
     components: { NavBar },
     template: `
       <div>
         <nav-bar/>
         <router-view/>
-      </div>`
+      </div>`,
   }));
 
-
 const User = {
-  template: '<div>User {{ $route.params.id }}</div>'
+  template: '<div>User {{ $route.params.id }}</div>',
 };
 
 storiesOf('Navigation', module)
-  .addDecorator(StoryRouter({}, {
-    routes: [
-      { path: '/user/:id', component: User }
-    ]
-  }))
+  .addDecorator(
+    StoryRouter(
+      {},
+      {
+        routes: [{ path: '/user/:id', component: User }],
+      }
+    )
+  )
   .add('dynamic route', () => ({
     template: `
       <div>
@@ -61,33 +69,40 @@ const UserComponent = {
     <div class="user">
       <h2>User {{ $route.params.id }}</h2>
       <router-view></router-view>
-    </div>`
+    </div>`,
 };
 
 const UserHome = {
-  template: '<div>Home</div>'
+  template: '<div>Home</div>',
 };
 
 const UserProfile = {
-  template: '<div>Profile</div>'
+  template: '<div>Profile</div>',
 };
 
 const UserPosts = {
-  template: '<div>Posts</div>'
+  template: '<div>Posts</div>',
 };
 
 storiesOf('Navigation', module)
-  .addDecorator(StoryRouter({}, {
-    routes: [
-      { path: '/user/:id', component: UserComponent,
-        children: [
-          { path: '', component: UserHome },
-          { path: 'profile', component: UserProfile },
-          { path: 'posts', component: UserPosts }
-        ]
+  .addDecorator(
+    StoryRouter(
+      {},
+      {
+        routes: [
+          {
+            path: '/user/:id',
+            component: UserComponent,
+            children: [
+              { path: '', component: UserHome },
+              { path: 'profile', component: UserProfile },
+              { path: 'posts', component: UserPosts },
+            ],
+          },
+        ],
       }
-    ]
-  }))
+    )
+  )
   .add('nested route', () => ({
     template: `
       <div>
@@ -102,15 +117,18 @@ storiesOf('Navigation', module)
   }));
 
 const ChildComponent = {
-  template: '<h3>Path: {{$route.fullPath}}</h3>'
+  template: '<h3>Path: {{$route.fullPath}}</h3>',
 };
 
 storiesOf('Navigation', module)
-  .addDecorator(StoryRouter({}, {
-    routes: [
-      { path: '*', component: ChildComponent }
-    ]
-  }))
+  .addDecorator(
+    StoryRouter(
+      {},
+      {
+        routes: [{ path: '*', component: ChildComponent }],
+      }
+    )
+  )
   .add('back & forward', () => ({
     template: `
       <div>
@@ -136,11 +154,10 @@ storiesOf('Navigation', module)
     },
   }));
 
-
 const Foo = {
   template: `
     <section>Foo.</section>
-  `
+  `,
 };
 
 /* eslint-disable no-console */
@@ -155,7 +172,7 @@ const Bar = {
 
     next(vm => {
       vm.testFunc('Some Message');
-      console.log("Fully Entered Bar");
+      console.log('Fully Entered Bar');
     });
   },
   beforeRouteLeave(to, from, next) {
@@ -165,20 +182,25 @@ const Bar = {
   methods: {
     testFunc(msg) {
       console.log(msg);
-    }
-  }
+    },
+  },
 };
 /* eslint-enable no-console */
 
 storiesOf('Navigation', module)
-.addDecorator(StoryRouter({}, {
-  routes: [
-    { path: "/bar", name: 'bar', component: Bar },
-    { path: "/foo", name: 'foo', component: Foo },
-  ]
-}))
-.add('guards', () => ({
-  template: `
+  .addDecorator(
+    StoryRouter(
+      {},
+      {
+        routes: [
+          { path: '/bar', name: 'bar', component: Bar },
+          { path: '/foo', name: 'foo', component: Foo },
+        ],
+      }
+    )
+  )
+  .add('guards', () => ({
+    template: `
     <div>
       <div>
       <router-link to="/bar">Bar</router-link>
@@ -187,4 +209,4 @@ storiesOf('Navigation', module)
       <router-view/>
     </div>
     `,
-}));
+  }));

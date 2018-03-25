@@ -2,23 +2,28 @@
     "env": {
       "browser": true,
       "node": true,  // storybook
-      "jest": true
+      "jest": true,
+      "es6": true
     },
     "parser": "babel-eslint",
-    "ecmaFeatures": {
+    "parserOptions": {
+      "sourceType": "module",
+      "ecmaFeatures": {
         "jsx": true
+      }
     },
     "extends": [
       "eslint:recommended",
-      "plugin:react/recommended"
+      "plugin:react/recommended",
+      "prettier"
     ],
     "plugins": [
-        "react"
+        "react",
+        "prettier"
     ],
     "rules": {
+      "prettier/prettier": 2,
       "no-unused-vars": 2,
-      "semi": [2, "always"],
-      "indent": [2, 2],
       "no-param-reassign": 2,
       "dot-notation": 2,
       "eqeqeq": 2,
@@ -27,27 +32,12 @@
       "no-var": 2,
       "no-use-before-define": 2,
       "no-const-assign": 2,
-      "key-spacing": 2,
-      "padded-blocks": [2, "never"],
-      "quote-props": [2, "as-needed"],
-      "no-multi-spaces": 2,
-      "no-multiple-empty-lines": [2, { max: 2, maxEOF: 1 }],
-      "space-before-blocks": 2,
-      "space-before-function-paren" : [2, "never"],
-      "space-infix-ops": 2,
       "spaced-comment": 2,
-      "space-in-parens": 2,
-      "no-trailing-spaces": 2,
-      "arrow-spacing": 2,
       "no-useless-constructor": 2,
       "prefer-const": 2,
-      "max-len": [2, 100],
       "max-depth": 2,
-      "react/jsx-indent": [2, 2],
       "react/no-string-refs": 2,
       "react/jsx-key": 2,
-      "react/jsx-equals-spacing": 2,
-      "react/jsx-curly-spacing": 2,
       "react/jsx-pascal-case": 2,
       "react/jsx-no-undef": 2,
       "react/sort-comp": 2,
