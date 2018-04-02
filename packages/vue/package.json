@@ -1,8 +1,7 @@
 {
   "name": "storybook-vue-router",
-  "version": "1.0.0-rc1",
-  "description":
-    "A storybook decorator that allows you to use routing-aware components in your stories.",
+  "version": "1.0.0-rc2.0",
+  "description": "A storybook decorator that allows you to use routing-aware components in your stories.",
   "main": "./dist/vue.js",
   "license": "MIT",
   "author": "Gianni Valdambrini",
@@ -14,7 +13,11 @@
     "url": "https://github.com/gvaldambrini/storybook-router/issues"
   },
   "homepage": "https://github.com/gvaldambrini/storybook-router",
-  "keywords": ["storybook", "vue", "vue-router"],
+  "keywords": [
+    "storybook",
+    "vue",
+    "vue-router"
+  ],
   "peerDependencies": {
     "@storybook/addon-actions": "^3.0.0",
     "@storybook/addons": "^3.0.0",
@@ -22,14 +25,14 @@
     "vue-router": "^2.7.0 || ^3.0.0"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.3.15",
+    "@storybook/addons": "^3.3.15",
     "babel-cli": "^6.24.1",
     "babel-preset-env": "^1.6.1",
     "vue": "^2.5.16",
     "vue-loader": "^14.2.2",
     "vue-router": "^3.0.1",
-    "vue-template-compiler": "^2.5.16",
-    "@storybook/addon-actions": "^3.3.15",
-    "@storybook/addons": "^3.3.15"
+    "vue-template-compiler": "^2.5.16"
   },
   "scripts": {
     "prepublish": "NODE_ENV=production npm run build",
