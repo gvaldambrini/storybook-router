@@ -2,20 +2,24 @@
 
 A [Storybook](https://storybook.js.org/) decorator that allows you to use your routing-aware components. You can simply use the library _link_ component within your story or you can write a real prototype of your application using `StoryRouter` in conjunction with the [story links addon](https://github.com/storybooks/storybook/tree/master/addons/links).
 
-The decorator currently supports [react-router](https://reacttraining.com/react-router/) v3 / v4 and [vue-router](https://router.vuejs.org/en/) v2.
+The decorator currently supports [react-router](https://reacttraining.com/react-router/) v4 and [vue-router](https://router.vuejs.org/en/) v2 / v3.
 
 ## Install
 
-    npm install --save-dev storybook-router
+    npm install --save-dev storybook-react-router
+
+or:
+
+    npm install --save-dev storybook-vue-router
 
 ## The StoryRouter decorator
 The decorator is actually a function which wraps the `Router` / `VueRouter` instance. It accepts two optional arguments that you can use if you want to build a prototype of your navigation within storybook or if you need more control over the router itself. For details, please refer to the specific documentation for [using with react-router](#usage-with-react-router) or [using with vue-router](#usage-with-vue-router).
 
-In its default behavior the decorator just log every routing action perfomed using the [storybook action logger](https://github.com/storybooks/storybook/tree/master/addons/actions). If you are fine with the default arguments you can add globally the `StoryRouter` decorator, however if you need to specify some of the arguments you have to use the decorator in every story that needs it.
+In its default behavior the decorator just log every route action perfomed using the [storybook action logger](https://github.com/storybooks/storybook/tree/master/addons/actions). If you are fine with the default arguments you can add globally the `StoryRouter` decorator, however if you need to specify some of the arguments you have to use the decorator for every story that needs it.
 
 ## Usage with react-router
 
-### A simple example with react-router v4
+### A simple example with react-router
 
 Suppose you have a component that uses react-router `Route` and `Link`:
 
@@ -46,7 +50,7 @@ you can add the `StoryRouter` decorator to your story this way:
 
 ```js
 import { storiesOf } from '@storybook/react';
-import StoryRouter from 'storybook-router';
+import StoryRouter from 'storybook-react-router';
 
 import ComponentParams from '<your_component_path>/ComponentParams';
 
@@ -57,72 +61,22 @@ storiesOf('Params', module)
   ));
 ```
 
-### A simple example with react-router v3
-
-Suppose you have a navbar like component with `Link`, `IndexLink` and active classnames:
-```js
-import React from 'react';
-import { IndexLink, Link } from 'react-router';
-
-const ACTIVE = {fontWeight: 'bold'};
-
-const ComponentLinks = (props) => (
-  <div>
-    <ul>
-      <li>
-        <IndexLink activeStyle={ACTIVE} activeClassName="active" to="/">
-          Home
-        </IndexLink>
-      </li>
-      <li>
-        <Link activeStyle={ACTIVE} activeClassName="active" to="/about">
-          About
-        </Link>
-      </li>
-    </ul>
-    <hr/>
-    {props.children}
-  </div>
-);
-
-export default ComponentLinks;
-```
-
-you can add the `StoryRouter` decorator to your story this way:
-
-```js
-import { storiesOf } from '@storybook/react';
-import StoryRouter from 'storybook-router';
-
-import ComponentLinks from '<your_component_path>/ComponentLinks';
-
-storiesOf('Links', module)
-  .addDecorator(StoryRouter())
-  .add('default', () => (
-    <ComponentLinks/>
-  ));
-```
-
 ### StoryRouter arguments
 
 The **first argument** is an object that you can use to extend the default behavior.
 Every time that a key in the object matches with a path Storybook will call the callback specified for the corresponding value with the destination path as argument.
 This way you can for example link stories together using the [`links` addons](https://github.com/storybooks/storybook/tree/master/addons/links) with the linkTo function.
 
-With react-router v3 the link keys need to be equal (`===`) to the history location of the performed action, with react-router v4 the match is performed using the [path-to-regexp module](https://www.npmjs.com/package/path-to-regexp) so you can also use parameter names and regexp within the link keys.
+The match is performed using the [path-to-regexp module](https://www.npmjs.com/package/path-to-regexp) so you can also use parameter names and regexp within the link keys.
 
-The **second argument** is another object that depends on which version of react-router you are using.
-
-With react-router v3 you can specify the following object properties:
- * initialEntry, the starting history location [default `'/'`]
- * autoRoute, a boolean flag you can use to allow or disallow the automatic route configuration [default `true`]
-
-As usually Storybook is used to render _dumb_ components, `StoryRouter` provides an automatic route configuration, which is a single route that renders the story. You can disable this feature and provides a route configuration object for the story setting `autoRoute` to `false`.
-
-With react-router v4 the object will be forwarded to the wrapped `MemoryRouter` as [props](https://reacttraining.com/react-router/web/api/MemoryRouter). This allows you to write stories having a specific url location or using advanced functionalities as asking the user confirmation before exiting from a location.
+The **second argument** is another object which will be forwarded to the wrapped `MemoryRouter` as [props](https://reacttraining.com/react-router/web/api/MemoryRouter). This allows you to write stories having a specific url location or using advanced functionalities as asking the user confirmation before exiting from a location.
 
 ### Advanced usage and examples
-You can find more examples in the provided stories for [react-router v3](https://github.com/gvaldambrini/storybook-router/tree/master/examples/react-router/V3) and [react-router v4](https://github.com/gvaldambrini/storybook-router/tree/master/examples/react-router/V4).
+You can find more examples in the provided [stories](https://github.com/gvaldambrini/storybook-router/tree/master/examples/react-router).
+You can run them cloning this repository and executing (supposing you have installed globally [lerna](https://github.com/lerna/lerna)):
+
+    npm install && npm run bootstrap
+    npm run storybook-react-examples
 
 ### Limitations
 
@@ -143,6 +97,9 @@ const NavBar = {
 you can define a story for your component just like this:
 
 ```js
+import { storiesOf } from '@storybook/vue';
+import StoryRouter from 'storybook-vue-router';
+
 storiesOf('NavBar', module)
   .addDecorator(StoryRouter())
   .add('default', () => NavBar);
@@ -150,6 +107,9 @@ storiesOf('NavBar', module)
 
 or if you want to include in your story the target components (with a local navigation) you can write:
 ```js
+import { storiesOf } from '@storybook/vue';
+import StoryRouter from 'storybook-vue-router';
+
 const Home = {
   template: '<div>Home</div>'
 };
@@ -188,7 +148,11 @@ The **second argument** is another object you can use to specify one of the [vue
 
 ### Advanced usage and examples
 
-You can find more examples in the [provided stories](https://github.com/gvaldambrini/storybook-router/tree/master/examples/vue-router).
+You can find more examples in the provided [stories](https://github.com/gvaldambrini/storybook-router/tree/master/examples/vue-router).
+You can run them cloning this repository and executing (supposing you have installed globally [lerna](https://github.com/lerna/lerna)):
+
+    npm install && npm run bootstrap
+    npm run storybook-vue-examples
 
 ### Limitations
 
