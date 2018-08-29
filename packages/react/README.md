@@ -59,11 +59,13 @@ If you want to use `StoryRouter` in all your stories, you can also add it global
 import { configure, addDecorator } from '@storybook/react';
 import StoryRouter from 'storybook-react-router';
 
-// ...your config
-
 addDecorator(StoryRouter());
 
+// ...your config
+
 ```
+
+The important thing is to call `addDecorator` before calling `configure`, otherwise it will not work!
 
 ## StoryRouter arguments
 
