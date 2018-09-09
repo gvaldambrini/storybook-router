@@ -53,7 +53,7 @@ storiesOf('Params', module)
   ));
 ```
 
-If you want to use `StoryRouter` in all your stories, you can also add it globally by edditing your Storybook `config.js` file:
+If you want to use `StoryRouter` in all your stories, you can also add it globally by editing your Storybook `config.js` file:
 
 ```js
 import { configure, addDecorator } from '@storybook/react';
