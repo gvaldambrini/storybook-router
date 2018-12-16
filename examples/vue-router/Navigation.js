@@ -41,7 +41,8 @@ storiesOf('Navigation', module)
   }));
 
 const User = {
-  template: '<div>User {{ $route.params.id }}</div>',
+  props: ['id'],
+  template: '<div>User {{ id }}</div>',
 };
 
 storiesOf('Navigation', module)
@@ -49,7 +50,15 @@ storiesOf('Navigation', module)
     StoryRouter(
       {},
       {
-        routes: [{ path: '/user/:id', component: User }],
+        routes: [
+          {
+            path: '/user/:id',
+            component: User,
+            props: route => ({
+              id: route.params.id,
+            }),
+          },
+        ],
       }
     )
   )
@@ -65,9 +74,10 @@ storiesOf('Navigation', module)
   }));
 
 const UserComponent = {
+  props: ['id'],
   template: `
     <div class="user">
-      <h2>User {{ $route.params.id }}</h2>
+      <h2>User {{ id }}</h2>
       <router-view></router-view>
     </div>`,
 };
@@ -93,6 +103,7 @@ storiesOf('Navigation', module)
           {
             path: '/user/:id',
             component: UserComponent,
+            props: true,
             children: [
               { path: '', component: UserHome },
               { path: 'profile', component: UserProfile },
