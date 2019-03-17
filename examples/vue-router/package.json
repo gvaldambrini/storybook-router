@@ -17,16 +17,16 @@
     "vue-router"
   ],
   "dependencies": {
-    "@storybook/addon-actions": "^4.0.9",
-    "@storybook/addon-links": "^4.0.9",
-    "@storybook/addons": "^4.0.9",
-    "@storybook/vue": "^4.0.9",
-    "babel-core": "^6.26.0",
+    "@storybook/addon-actions": "^4.0.9||^5.0.2",
+    "@storybook/addon-links": "^4.0.9||^5.0.2",
+    "@storybook/addons": "^4.0.9||^5.0.2",
+    "@storybook/vue": "^4.0.9||^5.0.2",
+    "babel-core": "^6.26.3",
     "storybook-vue-router": "^1.0.2",
-    "vue": "^2.5.16",
-    "vue-loader": "^14.2.2",
-    "vue-router": "^3.0.1",
-    "vue-template-compiler": "^2.5.16"
+    "vue": "^2.6.9",
+    "vue-loader": "^15.7.0",
+    "vue-router": "^3.0.2",
+    "vue-template-compiler": "^2.6.9"
   },
   "scripts": {
     "storybook": "start-storybook -p 9002 -c .storybook"

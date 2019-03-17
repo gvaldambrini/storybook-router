@@ -20,12 +20,12 @@
   ],
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.9.0",
-    "eslint-config-prettier": "^3.3.0",
-    "eslint-plugin-prettier": "^3.0.0",
-    "eslint-plugin-react": "^7.11.1",
-    "lerna": "^3.5.1",
-    "prettier": "1.15.3"
+    "eslint": "^5.15.2",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "lerna": "^3.13.1",
+    "prettier": "1.16.4"
   },
   "scripts": {
     "lint": "eslint packages/* examples/*",
