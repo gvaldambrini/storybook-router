@@ -4,12 +4,6 @@ import PropTypes from 'prop-types';
 import { action } from '@storybook/addon-actions';
 import { MemoryRouter, matchPath, Route } from 'react-router';
 
-const InnerComponent = props => props.story();
-
-InnerComponent.propTypes = {
-  story: PropTypes.func.isRequired,
-};
-
 const match = (link, path) => {
   // If the new path matches with one of the keys defined in the links object, then
   // executes the given corresponding callback value with the path as argument.
@@ -18,19 +12,16 @@ const match = (link, path) => {
   return matchPath(link, { path: path, exact: true });
 };
 
-const StoryRouter = ({ story, links, routerProps }) => (
+const StoryRouter = ({ children, links, routerProps }) => (
   // Limitation: as MemoryRouter creates a new history object, you cannot pass it from
   // a story to another one and so you cannot implement a back or forward button which
   // works among stories.
   <MemoryRouter {...routerProps}>
     <Route
       render={({ history, location }) => (
-        <HistoryWatcher
-          story={story}
-          history={history}
-          location={location}
-          links={links}
-        />
+        <HistoryWatcher history={history} location={location} links={links}>
+          {children}
+        </HistoryWatcher>
       )}
     />
   </MemoryRouter>
@@ -40,6 +31,7 @@ StoryRouter.propTypes = {
   story: PropTypes.func.isRequired,
   links: PropTypes.object,
   routerProps: PropTypes.object,
+  children: PropTypes.node,
 };
 
 class HistoryWatcher extends Component {
@@ -78,7 +70,7 @@ class HistoryWatcher extends Component {
   }
 
   render() {
-    return <InnerComponent {...this.props} />;
+    return this.props.children;
   }
 }
 
@@ -86,11 +78,14 @@ HistoryWatcher.propTypes = {
   history: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
   links: PropTypes.object,
+  children: PropTypes.node,
 };
 
 const storyRouterDecorator = (links, routerProps) => {
   const s = story => (
-    <StoryRouter story={story} links={links} routerProps={routerProps} />
+    <StoryRouter links={links} routerProps={routerProps}>
+      {story()}
+    </StoryRouter>
   );
   s.displayName = 'StoryRouter';
   return s;
