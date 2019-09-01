@@ -29,11 +29,11 @@
   },
   "workspaces": [
     "packages/*",
-    "examples/*"  
+    "examples/*"
   ],
   "scripts": {
     "lint": "eslint packages/* examples/*",
-    "bootstrap": "lerna bootstrap --hoist",
+    "bootstrap": "lerna bootstrap",
     "check-versions": "npm outdated; lerna exec --concurrency=1 --bail=false -- npm outdated",
     "build-react": "lerna exec --scope storybook-react-router -- npm run build",
     "build-vue": "lerna exec --scope storybook-vue-router -- npm run build",

@@ -22,6 +22,7 @@
     "@storybook/addons": "^4.0.9||^5.0.2||5.2.0-beta.13",
     "@storybook/vue": "^4.0.9||^5.0.2||5.2.0-beta.13",
     "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
     "storybook-vue-router": "^1.0.3",
     "vue": "^2.6.9",
     "vue-loader": "^15.7.0",
