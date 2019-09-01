@@ -20,16 +20,20 @@
   ],
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.15.2",
-    "eslint-config-prettier": "^4.1.0",
+    "eslint": "^6.1.0",
+    "eslint-config-prettier": "^6.0.0",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
     "lerna": "^3.13.1",
-    "prettier": "1.16.4"
+    "prettier": "1.18.2"
   },
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
   "scripts": {
     "lint": "eslint packages/* examples/*",
-    "bootstrap": "lerna bootstrap --hoist",
+    "bootstrap": "lerna bootstrap",
     "check-versions": "npm outdated; lerna exec --concurrency=1 --bail=false -- npm outdated",
     "build-react": "lerna exec --scope storybook-react-router -- npm run build",
     "build-vue": "lerna exec --scope storybook-vue-router -- npm run build",

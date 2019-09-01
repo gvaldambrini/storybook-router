@@ -1,13 +1,13 @@
 # storybook-router
 
-A [Storybook](https://storybook.js.org/) decorator that allows you to use your routing-aware components. 
+A [Storybook](https://storybook.js.org/) decorator that allows you to use your routing-aware components.
 
 ## Install
 
     npm install --save-dev storybook-vue-router
 
 ## The StoryRouter decorator
-The decorator is actually a function which wraps the `VueRouter` instance. It accepts two optional arguments that you can use if you want to build a prototype of your navigation within storybook or if you need more control over the router itself. 
+The decorator is actually a function which wraps the `VueRouter` instance. It accepts two optional arguments that you can use if you want to build a prototype of your navigation within storybook or if you need more control over the router itself.
 
 In its default behavior the decorator just log every route action perfomed using the [storybook action logger](https://github.com/storybooks/storybook/tree/master/addons/actions). If you are fine with the default arguments you can add globally the `StoryRouter` decorator, however if you need to specify some of the arguments you have to use the decorator for every story that needs it.
 
@@ -80,8 +80,8 @@ The **second argument** is another object you can use to specify one of the [vue
 You can find more examples in the provided [stories](https://github.com/gvaldambrini/storybook-router/tree/master/examples/vue-router).
 You can run them cloning this repository and executing (supposing you have installed globally [lerna](https://github.com/lerna/lerna)):
 
-    npm install && npm run bootstrap
-    npm run storybook-vue-examples
+    yarn install && yarn bootstrap
+    yarn storybook-vue-examples
 
 ## Limitations
 
