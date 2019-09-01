@@ -26,11 +26,11 @@
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "react-scripts": "3.0.1",
-    "storybook-react-router": "^1.0.5"
+    "storybook-react-router": "^1.0.6"
   },
   "scripts": {
     "storybook": "start-storybook -p 9001 -c .storybook"
   },
   "private": true,
-  "version": "1.0.5"
+  "version": "1.0.6"
 }

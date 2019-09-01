@@ -23,7 +23,7 @@
     "@storybook/vue": "^4.0.9||^5.0.2||5.2.0-beta.13",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
-    "storybook-vue-router": "^1.0.3",
+    "storybook-vue-router": "^1.0.6",
     "vue": "^2.6.9",
     "vue-loader": "^15.7.0",
     "vue-router": "^3.0.2",
@@ -33,5 +33,5 @@
     "storybook": "start-storybook -p 9002 -c .storybook"
   },
   "private": true,
-  "version": "1.0.3"
+  "version": "1.0.6"
 }
