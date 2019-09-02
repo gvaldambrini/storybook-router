@@ -3,7 +3,6 @@
   "version": "1.0.6",
   "description": "A storybook decorator that allows you to use routing-aware components in your stories.",
   "main": "./dist/react.js",
-  "module": "./react.js",
   "license": "MIT",
   "author": "Gianni Valdambrini",
   "repository": {
