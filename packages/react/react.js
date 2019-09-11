@@ -28,7 +28,6 @@ const StoryRouter = ({ children, links, routerProps }) => (
 );
 
 StoryRouter.propTypes = {
-  story: PropTypes.func.isRequired,
   links: PropTypes.object,
   routerProps: PropTypes.object,
   children: PropTypes.node,
