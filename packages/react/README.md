@@ -60,7 +60,7 @@ export default {
 If you want to use `StoryRouter` in all your stories, you can also add it globally by editing your Storybook `preview.js` file:
 
 ```js
-import StoryRouter from 'storybook-react-router';
+import { StoryRouter } from 'storybook-react-router';
 
 /** Global decorators. */
 export const decorators = [
