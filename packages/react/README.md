@@ -41,31 +41,39 @@ export default ComponentParams;
 you can add the `StoryRouter` decorator to your story this way:
 
 ```js
-import { storiesOf } from '@storybook/react';
 import StoryRouter from 'storybook-react-router';
 
-import ComponentParams from '<your_component_path>/ComponentParams';
+import YourComponent from './YourComponentPath';
 
-storiesOf('Params', module)
-  .addDecorator(StoryRouter())
-  .add('params', () => (
-    <ComponentParams/>
-  ));
+export default {
+  component: YourComponent,
+  decorators: [
+    (Story) => (
+      <StoryRouter>
+        <Story />
+      </StoryRouter>
+    )
+  ]
+}
 ```
 
-If you want to use `StoryRouter` in all your stories, you can also add it globally by editing your Storybook `config.js` file:
+If you want to use `StoryRouter` in all your stories, you can also add it globally by editing your Storybook `preview.js` file:
 
 ```js
-import { configure, addDecorator } from '@storybook/react';
-import StoryRouter from 'storybook-react-router';
+import { StoryRouter } from 'storybook-react-router';
 
-addDecorator(StoryRouter());
+/** Global decorators. */
+export const decorators = [
+  (Story) => (
+    <StoryRouter>
+      <Story />
+    </StoryRouter>
+  ),
+]
 
 // ...your config
 
 ```
-
-The important thing is to call `addDecorator` before calling `configure`, otherwise it will not work!
 
 ## StoryRouter arguments
 
