@@ -34,7 +34,7 @@
     "babel-preset-react": "^6.24.1",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
-    "react-router": "^5.0.0",
+    "react-router-dom": "^5.1.2",
     "react-scripts": "3.0.1"
   },
   "scripts": {

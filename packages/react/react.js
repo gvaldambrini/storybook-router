@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { action } from '@storybook/addon-actions';
-import { MemoryRouter, matchPath, Route } from 'react-router';
+import { MemoryRouter, matchPath, Route } from 'react-router-dom';
 
 const match = (link, path) => {
   // If the new path matches with one of the keys defined in the links object, then
